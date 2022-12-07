@@ -4,6 +4,7 @@ import cors from "cors";
 import session from "express-session";
 import config from "../config";
 import passport from "passport";
+import store from "connect-mongo";
 require("../strategies/discord");
 
 export const createApp = (): Express => {
@@ -30,6 +31,7 @@ export const createApp = (): Express => {
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7,
       },
+      store: new store({ mongoUrl: config.mongo }),
     })
   );
 

@@ -1,6 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import passport from "passport";
+import config from "../../config";
 
 router.get("/discord", passport.authenticate("discord"), (req, res) => {
   res.send(200);
@@ -10,7 +11,13 @@ router.get(
   "/discord/redirect",
   passport.authenticate("discord"),
   (req, res) => {
-    res.send({ msg: "Success" });
+    res.redirect(config.clientUrl);
   }
 );
+
+router.get("/status", (req, res) => {
+  return req.user
+    ? res.send(req.user)
+    : res.status(401).json({ error: "Unauthorized" });
+});
 export default router;
