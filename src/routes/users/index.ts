@@ -7,8 +7,9 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const user = await client.guilds.cache
     .get(config.Discord.guildId)
-    ?.members.fetch({
-      user: id,
+    ?.members.fetch({ user: id })
+    .catch((e) => {
+      console.log(e);
     });
   if (!user) return res.status(404).send({ error: "User not found" });
 
@@ -19,8 +20,9 @@ router.get("/:id/perms", async (req, res) => {
   const { id } = req.params;
   const user = await client.guilds.cache
     .get(config.Discord.guildId)
-    ?.members.fetch({
-      user: id,
+    ?.members.fetch({ user: id })
+    .catch((e) => {
+      console.log(e);
     });
   if (!user) return res.status(404).send({ error: "User not found" });
 
@@ -31,8 +33,9 @@ router.get("/:id/roles", async (req, res) => {
   const { id } = req.params;
   const user = await client.guilds.cache
     .get(config.Discord.guildId)
-    ?.members.fetch({
-      user: id,
+    ?.members.fetch({ user: id })
+    .catch((e) => {
+      console.log(e);
     });
   if (!user) return res.status(404).send({ error: "User not found" });
 

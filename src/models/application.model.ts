@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 export interface Application {
   status: "approved" | "denied" | "pending";
-  discordId: string;
+  discordID: string;
   applicationId: string;
   date: Date;
   fields: string[];
@@ -18,7 +18,7 @@ const ApplicationSchema = new Schema<Application>({
     type: String,
     required: true,
   },
-  discordId: {
+  discordID: {
     type: String,
     required: true,
   },
